@@ -55,14 +55,8 @@ class MapViewController: UIViewController {
     }
     // MARK: - Methods
     private func setUpСameraForPreviousRoute() {
-        let last = (routePath?.count() ?? 0) - 1
-        let firstCoordinate = routePath?.coordinate(at: 0)
-        let lastCoordinate = routePath?.coordinate(at:last)
-        let bounds = GMSCoordinateBounds(coordinate: firstCoordinate!, coordinate: lastCoordinate!)
-        let camera = mapView.camera(for: bounds, insets: UIEdgeInsets())!
-        addMarkerToPosition(position: firstCoordinate!)
-        addMarkerToPosition(position: lastCoordinate!)
-        mapView.camera = camera
+        let bounds = GMSCoordinateBounds(path: routePath!)
+        mapView.animate(with: GMSCameraUpdate.fit(bounds))
     }
     private func addButtonTargets() {
         startButton.addTarget(self, action: #selector(startNewTrack), for: .touchUpInside)
