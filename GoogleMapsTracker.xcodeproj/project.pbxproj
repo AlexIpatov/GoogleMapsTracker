@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A36EDB32618869B00B9E4AB /* UIButton + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A36EDB22618869B00B9E4AB /* UIButton + Extension.swift */; };
+		4A766CA8261C4F8F00AB199E /* LocationRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A766CA7261C4F8F00AB199E /* LocationRealm.swift */; };
 		4AF645E226175E2200528BC4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF645E126175E2200528BC4 /* AppDelegate.swift */; };
 		4AF645E426175E2200528BC4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF645E326175E2200528BC4 /* SceneDelegate.swift */; };
 		4AF645E626175E2200528BC4 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF645E526175E2200528BC4 /* MapViewController.swift */; };
@@ -20,6 +22,8 @@
 		0371A8A2C2D99767AE556618 /* Pods_GoogleMapsTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoogleMapsTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		071C9CF6EF901560DD7EF0F7 /* Pods-GoogleMapsTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoogleMapsTracker.debug.xcconfig"; path = "Target Support Files/Pods-GoogleMapsTracker/Pods-GoogleMapsTracker.debug.xcconfig"; sourceTree = "<group>"; };
 		302ECFF1D09FEC01BDF46D9F /* Pods-GoogleMapsTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoogleMapsTracker.release.xcconfig"; path = "Target Support Files/Pods-GoogleMapsTracker/Pods-GoogleMapsTracker.release.xcconfig"; sourceTree = "<group>"; };
+		4A36EDB22618869B00B9E4AB /* UIButton + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + Extension.swift"; sourceTree = "<group>"; };
+		4A766CA7261C4F8F00AB199E /* LocationRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRealm.swift; sourceTree = "<group>"; };
 		4AF645DE26175E2200528BC4 /* GoogleMapsTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoogleMapsTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AF645E126175E2200528BC4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4AF645E326175E2200528BC4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -42,6 +46,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A36EDB5261886A100B9E4AB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4A36EDB22618869B00B9E4AB /* UIButton + Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4A84C9E42618A74B005FCE62 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4A766CA7261C4F8F00AB199E /* LocationRealm.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		4AF645D526175E2200528BC4 = {
 			isa = PBXGroup;
 			children = (
@@ -63,6 +83,7 @@
 		4AF645E026175E2200528BC4 /* GoogleMapsTracker */ = {
 			isa = PBXGroup;
 			children = (
+				4A84C9E42618A74B005FCE62 /* Model */,
 				4AF645E126175E2200528BC4 /* AppDelegate.swift */,
 				4AF645E326175E2200528BC4 /* SceneDelegate.swift */,
 				4AF645E526175E2200528BC4 /* MapViewController.swift */,
@@ -70,6 +91,7 @@
 				4AF645EA26175E2300528BC4 /* Assets.xcassets */,
 				4AF645EC26175E2300528BC4 /* LaunchScreen.storyboard */,
 				4AF645EF26175E2300528BC4 /* Info.plist */,
+				4A36EDB5261886A100B9E4AB /* Extensions */,
 			);
 			path = GoogleMapsTracker;
 			sourceTree = "<group>";
@@ -103,6 +125,7 @@
 				4AF645DB26175E2200528BC4 /* Frameworks */,
 				4AF645DC26175E2200528BC4 /* Resources */,
 				3BD26349370A9783AA2901B6 /* [CP] Copy Pods Resources */,
+				7C946602EDD2F8B8FFEED905 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -198,6 +221,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GoogleMapsTracker/Pods-GoogleMapsTracker-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		7C946602EDD2F8B8FFEED905 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GoogleMapsTracker/Pods-GoogleMapsTracker-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GoogleMapsTracker/Pods-GoogleMapsTracker-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GoogleMapsTracker/Pods-GoogleMapsTracker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -205,9 +245,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A766CA8261C4F8F00AB199E /* LocationRealm.swift in Sources */,
 				4AF645E626175E2200528BC4 /* MapViewController.swift in Sources */,
 				4AF645E226175E2200528BC4 /* AppDelegate.swift in Sources */,
 				4AF645E426175E2200528BC4 /* SceneDelegate.swift in Sources */,
+				4A36EDB32618869B00B9E4AB /* UIButton + Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +312,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -331,6 +374,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

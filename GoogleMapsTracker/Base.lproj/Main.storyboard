@@ -31,9 +31,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="GIP-7I-X2A">
-                        <barButtonItem key="leftBarButtonItem" title="Track your location" id="NNV-Fg-szC">
+                        <barButtonItem key="rightBarButtonItem" title="Show previous route" id="NNV-Fg-szC">
                             <connections>
-                                <action selector="startTrackLocation:" destination="BYZ-38-t0r" id="alI-7p-SUd"/>
+                                <action selector="showPreviousRoute:" destination="BYZ-38-t0r" id="lIH-yL-QPJ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
