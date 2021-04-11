@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Uyh-3E-dSj">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="7rf-MV-e3c">
+            <objects>
+                <viewController storyboardIdentifier="LoginViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Uyh-3E-dSj" customClass="LoginViewController" customModule="GoogleMapsTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4KA-L4-o7y">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yGu-5T-xQl">
+                                <rect key="frame" x="20" y="296" width="374" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2UY-4c-LYk">
+                                <rect key="frame" x="20" y="363" width="374" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3zW-Sz-afa">
+                                <rect key="frame" x="188" y="433" width="38" height="30"/>
+                                <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="loginButton:" destination="Uyh-3E-dSj" eventType="touchUpInside" id="Tad-bY-u5f"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ev-Wx-yLJ">
+                                <rect key="frame" x="174" y="484" width="66" height="30"/>
+                                <state key="normal" title="Password"/>
+                                <connections>
+                                    <action selector="signUpButton:" destination="Uyh-3E-dSj" eventType="touchUpInside" id="p3p-uZ-WWX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="kRB-cK-sdo"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="3zW-Sz-afa" firstAttribute="centerY" secondItem="4KA-L4-o7y" secondAttribute="centerY" id="1kZ-pB-c9S"/>
+                            <constraint firstItem="3zW-Sz-afa" firstAttribute="centerX" secondItem="4KA-L4-o7y" secondAttribute="centerX" id="5Pu-Tq-zb2"/>
+                            <constraint firstItem="3zW-Sz-afa" firstAttribute="top" secondItem="2UY-4c-LYk" secondAttribute="bottom" constant="36" id="YIQ-V5-9Z0"/>
+                            <constraint firstItem="7Ev-Wx-yLJ" firstAttribute="top" secondItem="3zW-Sz-afa" secondAttribute="bottom" constant="21" id="ayC-yx-c2l"/>
+                            <constraint firstItem="kRB-cK-sdo" firstAttribute="trailing" secondItem="2UY-4c-LYk" secondAttribute="trailing" constant="20" id="cmf-Lg-VQl"/>
+                            <constraint firstItem="2UY-4c-LYk" firstAttribute="leading" secondItem="kRB-cK-sdo" secondAttribute="leading" constant="20" id="l1n-p6-mm5"/>
+                            <constraint firstItem="kRB-cK-sdo" firstAttribute="trailing" secondItem="yGu-5T-xQl" secondAttribute="trailing" constant="20" id="nWh-n5-05d"/>
+                            <constraint firstItem="yGu-5T-xQl" firstAttribute="leading" secondItem="kRB-cK-sdo" secondAttribute="leading" constant="20" id="tO2-p6-zjt"/>
+                            <constraint firstItem="2UY-4c-LYk" firstAttribute="top" secondItem="yGu-5T-xQl" secondAttribute="bottom" constant="33" id="tdA-EE-Jf3"/>
+                            <constraint firstItem="7Ev-Wx-yLJ" firstAttribute="centerX" secondItem="4KA-L4-o7y" secondAttribute="centerX" id="wRm-nL-1wN"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="loginRouter" destination="vbX-fL-Uzw" id="Rwo-wz-uNC"/>
+                        <outlet property="loginTextField" destination="yGu-5T-xQl" id="atL-48-PhE"/>
+                        <outlet property="passwordTextField" destination="2UY-4c-LYk" id="Y45-l3-kMV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ecM-p0-Egt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <customObject id="vbX-fL-Uzw" customClass="LoginRouter" customModule="GoogleMapsTracker">
+                    <connections>
+                        <outlet property="controller" destination="Uyh-3E-dSj" id="KJp-QS-6hs"/>
+                    </connections>
+                </customObject>
+            </objects>
+            <point key="canvasLocation" x="63.768115942028992" y="138.61607142857142"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

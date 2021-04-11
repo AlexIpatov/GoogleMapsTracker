@@ -10,6 +10,7 @@ import GoogleMaps
 import RealmSwift
 
 class MapViewController: UIViewController {
+    @IBOutlet var mainRouter: MainRouter!
     private var isTracking: Bool = false
     private let realm = try! Realm()
     private var locationManager: CLLocationManager?
@@ -18,18 +19,9 @@ class MapViewController: UIViewController {
 
     private lazy var stopButton = UIButton(image: UIImage(systemName: "stop.fill"), cornerRadius: 35)
     private lazy var startButton = UIButton(image: UIImage(systemName: "play.fill"), cornerRadius: 35)
+    private lazy var showPreviousRoute = UIButton(image: UIImage(systemName: "arrow.counterclockwise"), cornerRadius: 20)
+    private lazy var logOut = UIButton(image: UIImage(systemName: "figure.wave"), cornerRadius: 20)
     @IBOutlet weak var mapView: GMSMapView!
-    @IBAction func showPreviousRoute(_ sender: Any) {
-        guard  !isTracking  else {showNowTrackingAlert()
-            return }
-        let encodedPath = realm.objects(EncodedPathRealm.self)
-        guard encodedPath.count != 0 else { return }
-        route?.map = nil
-        routePath = GMSMutablePath(fromEncodedPath: encodedPath[0].encodedPath)
-        route?.map = mapView
-        route?.path = routePath
-        setUpСameraForPreviousRoute()
-    }
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +30,7 @@ class MapViewController: UIViewController {
         addButtonTargets()
         configureLocationManager()
         locationManager?.requestLocation()
-        print(realm.configuration.fileURL!)
+
     }
     // MARK: - configure location & map
     private func configureLocationManager() {
@@ -61,6 +53,8 @@ class MapViewController: UIViewController {
     private func addButtonTargets() {
         startButton.addTarget(self, action: #selector(startNewTrack), for: .touchUpInside)
         stopButton.addTarget(self, action: #selector(stopTrack), for: .touchUpInside)
+        showPreviousRoute.addTarget(self, action: #selector(showPreviousRouteTapped), for: .touchUpInside)
+        logOut.addTarget(self, action: #selector(logOutTapped), for: .touchUpInside)
     }
     private func addMarkerToPosition(position: CLLocationCoordinate2D) {
         let marker = GMSMarker(position: position)
@@ -122,13 +116,40 @@ extension MapViewController {
         locationManager?.stopUpdatingLocation()
         savePathToRealm()
     }
+    @objc private func showPreviousRouteTapped() {
+        guard  !isTracking  else {showNowTrackingAlert()
+            return }
+        let encodedPath = realm.objects(EncodedPathRealm.self)
+        guard encodedPath.count != 0 else { return }
+        route?.map = nil
+        routePath = GMSMutablePath(fromEncodedPath: encodedPath[0].encodedPath)
+        route?.map = mapView
+        route?.path = routePath
+        setUpСameraForPreviousRoute()
+    }
+    @objc private func logOutTapped() {
+        UserDefaults.standard.set(false, forKey: "isLogin")
+        mainRouter.toLaunch()
+    }
 }
 // MARK: - Setup UI
 extension MapViewController {
     private func setupButtons() {
+        mapView.addSubview(logOut)
+        mapView.addSubview(showPreviousRoute)
         mapView.addSubview(stopButton)
         mapView.addSubview(startButton)
         NSLayoutConstraint.activate([
+            logOut.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 100),
+            logOut.rightAnchor.constraint(equalTo: mapView.rightAnchor, constant: -20),
+            logOut.widthAnchor.constraint(equalToConstant: 40),
+            logOut.heightAnchor.constraint(equalTo: logOut.widthAnchor),
+
+            showPreviousRoute.topAnchor.constraint(equalTo: logOut.bottomAnchor, constant: 20),
+            showPreviousRoute.rightAnchor.constraint(equalTo: logOut.rightAnchor),
+            showPreviousRoute.widthAnchor.constraint(equalTo: logOut.widthAnchor),
+            showPreviousRoute.heightAnchor.constraint(equalTo: logOut.widthAnchor),
+
             stopButton.widthAnchor.constraint(equalToConstant: 70),
             stopButton.heightAnchor.constraint(equalTo: stopButton.widthAnchor),
             stopButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -20),
