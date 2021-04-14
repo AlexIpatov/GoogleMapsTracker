@@ -17,10 +17,14 @@ class MapViewController: UIViewController {
     private var route: GMSPolyline?
     private var routePath: GMSMutablePath?
 
-    private lazy var stopButton = UIButton(image: UIImage(systemName: "stop.fill"), cornerRadius: 35)
-    private lazy var startButton = UIButton(image: UIImage(systemName: "play.fill"), cornerRadius: 35)
-    private lazy var showPreviousRoute = UIButton(image: UIImage(systemName: "arrow.counterclockwise"), cornerRadius: 20)
-    private lazy var logOut = UIButton(image: UIImage(systemName: "figure.wave"), cornerRadius: 20)
+    private lazy var stopButton = UIButton(image: UIImage(systemName: "stop.fill"),
+                                           cornerRadius: 35)
+    private lazy var startButton = UIButton(image: UIImage(systemName: "play.fill"),
+                                            cornerRadius: 35)
+    private lazy var showPreviousRoute = UIButton(image: UIImage(systemName: "arrow.counterclockwise"),
+                                                  cornerRadius: 20)
+    private lazy var logOut = UIButton(image: UIImage(systemName: "figure.wave"),
+                                       cornerRadius: 20)
     @IBOutlet weak var mapView: GMSMapView!
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -70,7 +74,9 @@ class MapViewController: UIViewController {
         }
     }
     func showNowTrackingAlert() {
-        let alertController = UIAlertController(title: "Tracking in progress!", message: "Do you want to save the current track?", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Tracking in progress!",
+                                                message: "Do you want to save the current track?",
+                                                preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Yes", style: .default) { (_) in
             self.stopTrack()
         }
