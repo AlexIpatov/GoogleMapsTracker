@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Nes-Yj-0Lr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -11,7 +11,7 @@
         <!--Map View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="GoogleMapsTracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="MapViewController" customModule="GoogleMapsTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -30,38 +30,19 @@
                             <constraint firstAttribute="bottom" secondItem="YGD-wd-oCi" secondAttribute="bottom" id="zjd-js-eJR"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="GIP-7I-X2A">
-                        <barButtonItem key="rightBarButtonItem" title="Show previous route" id="NNV-Fg-szC">
-                            <connections>
-                                <action selector="showPreviousRoute:" destination="BYZ-38-t0r" id="lIH-yL-QPJ"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <connections>
-                        <outlet property="mapView" destination="YGD-wd-oCi" id="VeE-Zp-YVx"/>
+                        <outlet property="mainRouter" destination="lb9-rQ-C7J" id="DNT-8M-dEI"/>
+                        <outlet property="mapView" destination="YGD-wd-oCi" id="dei-lr-KKn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <customObject id="lb9-rQ-C7J" customClass="MainRouter" customModule="GoogleMapsTracker" customModuleProvider="target">
+                    <connections>
+                        <outlet property="controller" destination="BYZ-38-t0r" id="igh-Yj-OiP"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="939.13043478260875" y="88.392857142857139"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="9LU-1Z-0GJ">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Nes-Yj-0Lr" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lUa-L0-996">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="XoT-to-Lgi"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nR5-ag-JMj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="28.985507246376812" y="88.392857142857139"/>
         </scene>
     </scenes>
     <resources>
