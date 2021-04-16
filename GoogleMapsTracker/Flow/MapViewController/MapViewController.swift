@@ -8,15 +8,17 @@
 import UIKit
 import GoogleMaps
 import RealmSwift
+import RxSwift
+import RxCocoa
 
 class MapViewController: UIViewController {
     @IBOutlet var mainRouter: MainRouter!
     private var isTracking: Bool = false
     private let realm = try! Realm()
-    private var locationManager: CLLocationManager?
+    private var locationManager = LocationManager.instance
     private var route: GMSPolyline?
     private var routePath: GMSMutablePath?
-
+    private var bag = DisposeBag()
     private lazy var stopButton = UIButton(image: UIImage(systemName: "stop.fill"),
                                            cornerRadius: 35)
     private lazy var startButton = UIButton(image: UIImage(systemName: "play.fill"),
@@ -26,6 +28,7 @@ class MapViewController: UIViewController {
     private lazy var logOut = UIButton(image: UIImage(systemName: "figure.wave"),
                                        cornerRadius: 20)
     @IBOutlet weak var mapView: GMSMapView!
+
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,18 +36,20 @@ class MapViewController: UIViewController {
         setupButtons()
         addButtonTargets()
         configureLocationManager()
-        locationManager?.requestLocation()
-
     }
+
     // MARK: - configure location & map
     private func configureLocationManager() {
-        locationManager = CLLocationManager()
-        locationManager?.allowsBackgroundLocationUpdates = true
-        locationManager?.pausesLocationUpdatesAutomatically = false
-        locationManager?.startMonitoringSignificantLocationChanges()
-        locationManager?.requestAlwaysAuthorization()
-        locationManager?.desiredAccuracy = kCLLocationAccuracyHundredMeters
-        locationManager?.delegate = self
+        locationManager
+            .location
+            .asObservable()
+            .bind { [weak self] location in
+                guard let location = location else { return }
+                self?.routePath?.add(location.coordinate)
+                self?.route?.path = self?.routePath
+                let position = GMSCameraPosition.camera(withTarget: location.coordinate, zoom: 17)
+                self?.mapView.animate(to: position)
+            }.disposed(by: bag)
     }
     private func configureMap() {
         mapView.animate(toZoom: 17)
@@ -83,25 +88,13 @@ class MapViewController: UIViewController {
         let noAction = UIAlertAction(title: "No", style: .default) { [self] (_) in
             isTracking = false
             route?.map = nil
-            locationManager?.stopUpdatingLocation()
+            locationManager.stopUpdatingLocation()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
         alertController.addAction(okAction)
         alertController.addAction(noAction)
         alertController.addAction(cancelAction)
         present(alertController, animated: true, completion: nil)
-    }
-}
-// MARK: - CLLocationManagerDelegate
-extension MapViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let currentCoordinate = locations.last?.coordinate else { return }
-        routePath?.add(currentCoordinate)
-        route?.path = routePath
-        mapView.animate(toLocation: currentCoordinate)
-    }
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
     }
 }
 // MARK: - Actions
@@ -114,12 +107,12 @@ extension MapViewController {
         routePath = GMSMutablePath()
         route?.map = mapView
         mapView.animate(toZoom: 17)
-        locationManager?.startUpdatingLocation()
+        locationManager.startUpdatingLocation()
     }
     @objc private func stopTrack() {
         isTracking = false
         route?.map = nil
-        locationManager?.stopUpdatingLocation()
+        locationManager.stopUpdatingLocation()
         savePathToRealm()
     }
     @objc private func showPreviousRouteTapped() {

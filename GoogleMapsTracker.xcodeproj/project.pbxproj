@@ -11,14 +11,13 @@
 		4A538ACF2621D71E00980F8B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A538ACE2621D71E00980F8B /* User.swift */; };
 		4A538AD42621D92000980F8B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A538AD32621D92000980F8B /* LoginViewController.swift */; };
 		4A538AD82621EC2900980F8B /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A538AD72621EC2900980F8B /* Validators.swift */; };
-		4A538ADE2622E0EF00980F8B /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A538ADD2622E0EF00980F8B /* AuthService.swift */; };
-		4A538AE32622E21E00980F8B /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A538AE22622E21E00980F8B /* AuthError.swift */; };
 		4A538AE82622F1B100980F8B /* RouterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A538AE72622F1B100980F8B /* RouterHelper.swift */; };
 		4A538AEB2622F1F500980F8B /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A538AEA2622F1F500980F8B /* BaseRouter.swift */; };
 		4A538AF12622F8BC00980F8B /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A538AF02622F8BC00980F8B /* Auth.storyboard */; };
 		4A538AF62622FD1800980F8B /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A538AF52622FD1800980F8B /* LoginRouter.swift */; };
 		4A538AF92622FD5900980F8B /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A538AF82622FD5900980F8B /* MainRouter.swift */; };
 		4A766CA8261C4F8F00AB199E /* LocationRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A766CA7261C4F8F00AB199E /* LocationRealm.swift */; };
+		4A7C58982626DD3A005776BE /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7C58972626DD3A005776BE /* LocationManager.swift */; };
 		4AF645E226175E2200528BC4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF645E126175E2200528BC4 /* AppDelegate.swift */; };
 		4AF645E426175E2200528BC4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF645E326175E2200528BC4 /* SceneDelegate.swift */; };
 		4AF645E626175E2200528BC4 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF645E526175E2200528BC4 /* MapViewController.swift */; };
@@ -36,14 +35,13 @@
 		4A538ACE2621D71E00980F8B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4A538AD32621D92000980F8B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4A538AD72621EC2900980F8B /* Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
-		4A538ADD2622E0EF00980F8B /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
-		4A538AE22622E21E00980F8B /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
 		4A538AE72622F1B100980F8B /* RouterHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterHelper.swift; sourceTree = "<group>"; };
 		4A538AEA2622F1F500980F8B /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
 		4A538AF02622F8BC00980F8B /* Auth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
 		4A538AF52622FD1800980F8B /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
 		4A538AF82622FD5900980F8B /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
 		4A766CA7261C4F8F00AB199E /* LocationRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRealm.swift; sourceTree = "<group>"; };
+		4A7C58972626DD3A005776BE /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		4AF645DE26175E2200528BC4 /* GoogleMapsTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoogleMapsTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AF645E126175E2200528BC4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4AF645E326175E2200528BC4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,22 +98,6 @@
 			path = Validators;
 			sourceTree = "<group>";
 		};
-		4A538ADC2622E0C300980F8B /* AuthService */ = {
-			isa = PBXGroup;
-			children = (
-				4A538ADD2622E0EF00980F8B /* AuthService.swift */,
-			);
-			path = AuthService;
-			sourceTree = "<group>";
-		};
-		4A538AE12622E20D00980F8B /* AuthError */ = {
-			isa = PBXGroup;
-			children = (
-				4A538AE22622E21E00980F8B /* AuthError.swift */,
-			);
-			path = AuthError;
-			sourceTree = "<group>";
-		};
 		4A538AE62622F19700980F8B /* Router */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +125,14 @@
 				4A538AF52622FD1800980F8B /* LoginRouter.swift */,
 			);
 			path = LoginViewController;
+			sourceTree = "<group>";
+		};
+		4A7C58962626DD1A005776BE /* LocationManager */ = {
+			isa = PBXGroup;
+			children = (
+				4A7C58972626DD3A005776BE /* LocationManager.swift */,
+			);
+			path = LocationManager;
 			sourceTree = "<group>";
 		};
 		4A84C9E42618A74B005FCE62 /* Model */ = {
@@ -175,10 +165,9 @@
 		4AF645E026175E2200528BC4 /* GoogleMapsTracker */ = {
 			isa = PBXGroup;
 			children = (
+				4A7C58962626DD1A005776BE /* LocationManager */,
 				4A538AD12621D87200980F8B /* App */,
 				4A538AE62622F19700980F8B /* Router */,
-				4A538AE12622E20D00980F8B /* AuthError */,
-				4A538ADC2622E0C300980F8B /* AuthService */,
 				4A538AD62621EC0E00980F8B /* Validators */,
 				4A538AD22621D88300980F8B /* Flow */,
 				4A36EDB5261886A100B9E4AB /* Extensions */,
@@ -342,11 +331,10 @@
 			files = (
 				4A538AD42621D92000980F8B /* LoginViewController.swift in Sources */,
 				4A538AF92622FD5900980F8B /* MainRouter.swift in Sources */,
+				4A7C58982626DD3A005776BE /* LocationManager.swift in Sources */,
 				4A766CA8261C4F8F00AB199E /* LocationRealm.swift in Sources */,
 				4A538AE82622F1B100980F8B /* RouterHelper.swift in Sources */,
 				4AF645E626175E2200528BC4 /* MapViewController.swift in Sources */,
-				4A538ADE2622E0EF00980F8B /* AuthService.swift in Sources */,
-				4A538AE32622E21E00980F8B /* AuthError.swift in Sources */,
 				4A538ACF2621D71E00980F8B /* User.swift in Sources */,
 				4A538AEB2622F1F500980F8B /* BaseRouter.swift in Sources */,
 				4A538AD82621EC2900980F8B /* Validators.swift in Sources */,
