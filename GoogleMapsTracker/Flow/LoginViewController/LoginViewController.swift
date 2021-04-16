@@ -24,6 +24,11 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
     }
     // MARK: - Methods
+    private func setupInputSecurity() {
+        loginTextField.autocorrectionType = .no
+        passwordTextField.isSecureTextEntry = true
+    }
+
     private func loginButtonTapped() {
         authService.login(login: loginTextField.text, password: passwordTextField.text) { (result) in
             switch result{
