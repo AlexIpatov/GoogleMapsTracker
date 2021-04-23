@@ -29,16 +29,10 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3zW-Sz-afa">
                                 <rect key="frame" x="188" y="433" width="38" height="30"/>
                                 <state key="normal" title="Login"/>
-                                <connections>
-                                    <action selector="loginButton:" destination="Uyh-3E-dSj" eventType="touchUpInside" id="Tad-bY-u5f"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ev-Wx-yLJ">
-                                <rect key="frame" x="174" y="484" width="66" height="30"/>
-                                <state key="normal" title="Password"/>
-                                <connections>
-                                    <action selector="signUpButton:" destination="Uyh-3E-dSj" eventType="touchUpInside" id="p3p-uZ-WWX"/>
-                                </connections>
+                                <rect key="frame" x="181" y="484" width="52" height="30"/>
+                                <state key="normal" title="Sign up"/>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kRB-cK-sdo"/>
@@ -57,9 +51,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="loginButton" destination="3zW-Sz-afa" id="Pmv-s9-G0J"/>
                         <outlet property="loginRouter" destination="vbX-fL-Uzw" id="Rwo-wz-uNC"/>
                         <outlet property="loginTextField" destination="yGu-5T-xQl" id="atL-48-PhE"/>
                         <outlet property="passwordTextField" destination="2UY-4c-LYk" id="Y45-l3-kMV"/>
+                        <outlet property="signUpButton" destination="7Ev-Wx-yLJ" id="VLY-0h-UuR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ecM-p0-Egt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
