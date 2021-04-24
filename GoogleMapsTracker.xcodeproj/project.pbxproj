@@ -16,8 +16,10 @@
 		4A538AF12622F8BC00980F8B /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A538AF02622F8BC00980F8B /* Auth.storyboard */; };
 		4A538AF62622FD1800980F8B /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A538AF52622FD1800980F8B /* LoginRouter.swift */; };
 		4A538AF92622FD5900980F8B /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A538AF82622FD5900980F8B /* MainRouter.swift */; };
+		4A5A9A0A2632B29E00EC3638 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A5A9A092632B29E00EC3638 /* MapKit.framework */; };
 		4A766CA8261C4F8F00AB199E /* LocationRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A766CA7261C4F8F00AB199E /* LocationRealm.swift */; };
 		4A7C58982626DD3A005776BE /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7C58972626DD3A005776BE /* LocationManager.swift */; };
+		4A9040F0263449D500533B6A /* NotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9040EF263449D500533B6A /* NotificationCenter.swift */; };
 		4AF645E226175E2200528BC4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF645E126175E2200528BC4 /* AppDelegate.swift */; };
 		4AF645E426175E2200528BC4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF645E326175E2200528BC4 /* SceneDelegate.swift */; };
 		4AF645E626175E2200528BC4 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF645E526175E2200528BC4 /* MapViewController.swift */; };
@@ -40,8 +42,11 @@
 		4A538AF02622F8BC00980F8B /* Auth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
 		4A538AF52622FD1800980F8B /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
 		4A538AF82622FD5900980F8B /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
+		4A5A9A072632B0EE00EC3638 /* GoogleMapsTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GoogleMapsTracker.entitlements; sourceTree = "<group>"; };
+		4A5A9A092632B29E00EC3638 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		4A766CA7261C4F8F00AB199E /* LocationRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRealm.swift; sourceTree = "<group>"; };
 		4A7C58972626DD3A005776BE /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		4A9040EF263449D500533B6A /* NotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenter.swift; sourceTree = "<group>"; };
 		4AF645DE26175E2200528BC4 /* GoogleMapsTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoogleMapsTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AF645E126175E2200528BC4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4AF645E326175E2200528BC4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -57,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A5A9A0A2632B29E00EC3638 /* MapKit.framework in Frameworks */,
 				BBF4E6683C75CCC137DACF27 /* Pods_GoogleMapsTracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -144,6 +150,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		4A9040EE263449C100533B6A /* NotificationCenter */ = {
+			isa = PBXGroup;
+			children = (
+				4A9040EF263449D500533B6A /* NotificationCenter.swift */,
+			);
+			path = NotificationCenter;
+			sourceTree = "<group>";
+		};
 		4AF645D526175E2200528BC4 = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +179,8 @@
 		4AF645E026175E2200528BC4 /* GoogleMapsTracker */ = {
 			isa = PBXGroup;
 			children = (
+				4A9040EE263449C100533B6A /* NotificationCenter */,
+				4A5A9A072632B0EE00EC3638 /* GoogleMapsTracker.entitlements */,
 				4A7C58962626DD1A005776BE /* LocationManager */,
 				4A538AD12621D87200980F8B /* App */,
 				4A538AE62622F19700980F8B /* Router */,
@@ -191,6 +207,7 @@
 		6F9E00AF9B5E29614F723F11 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4A5A9A092632B29E00EC3638 /* MapKit.framework */,
 				0371A8A2C2D99767AE556618 /* Pods_GoogleMapsTracker.framework */,
 			);
 			name = Frameworks;
@@ -338,6 +355,7 @@
 				4A538ACF2621D71E00980F8B /* User.swift in Sources */,
 				4A538AEB2622F1F500980F8B /* BaseRouter.swift in Sources */,
 				4A538AD82621EC2900980F8B /* Validators.swift in Sources */,
+				4A9040F0263449D500533B6A /* NotificationCenter.swift in Sources */,
 				4AF645E226175E2200528BC4 /* AppDelegate.swift in Sources */,
 				4AF645E426175E2200528BC4 /* SceneDelegate.swift in Sources */,
 				4A538AF62622FD1800980F8B /* LoginRouter.swift in Sources */,
@@ -491,6 +509,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = GoogleMapsTracker/GoogleMapsTracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C23RGTGY52;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
@@ -512,6 +531,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = GoogleMapsTracker/GoogleMapsTracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C23RGTGY52;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
