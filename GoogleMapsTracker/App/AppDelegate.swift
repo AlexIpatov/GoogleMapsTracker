@@ -11,11 +11,17 @@ import GoogleMaps
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var notificationCenter = NotificationCenter()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         GMSServices.provideAPIKey("AIzaSyCLY80mgNIcRTtN6ZWx3NMBs7iEfXLNySY")
+
+        notificationCenter.notificationReminder()
+
         return true
     }
+
+
 
     // MARK: UISceneSession Lifecycle
 
