@@ -44,7 +44,6 @@ class LoginViewController: UIViewController {
             realm.add(newUser)
         }
     }
-
     private func setupLoginBinding() {
         let loginButtonEnabled = Observable.combineLatest( loginObservable,
                                                            passwordObservable).map { [self](login: String,
@@ -59,7 +58,6 @@ class LoginViewController: UIViewController {
         loginButtonEnabled
             .bind(to: loginButton.rx.isEnabled)
             .disposed(by: bag)
-
         loginButton.rx.controlEvent(.touchUpInside)
             .subscribe(onNext: { [weak self] _ in
                 self?.showAlert(title: "Hello!", message: nil) {
@@ -67,7 +65,6 @@ class LoginViewController: UIViewController {
                     UserDefaults.standard.set(true, forKey: "isLogin")
                 }
             }).disposed(by: bag)
-
     }
     private func signUpButtonBinding(){
         let signUpButtonEnabled = Observable.combineLatest( loginObservable,
@@ -88,7 +85,6 @@ class LoginViewController: UIViewController {
                 }
             }).disposed(by: bag)
     }
-
 }
 extension LoginViewController {
     func showAlert(title: String,
