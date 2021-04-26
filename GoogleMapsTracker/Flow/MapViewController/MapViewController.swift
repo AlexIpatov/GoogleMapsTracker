@@ -217,12 +217,10 @@ extension MapViewController: UINavigationControllerDelegate, UIImagePickerContro
         if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             let mapImage = image.resizeForMapMark(newSize: CGSize(width: 50, height: 50))
             saveImageToRealm(imageData: mapImage.pngData())
-            avatarImage = mapImage
             return mapImage
         } else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             let mapImage = image.resizeForMapMark(newSize: CGSize(width: 50, height: 50))
             saveImageToRealm(imageData: mapImage.pngData())
-            avatarImage = mapImage
             return mapImage
         } else {
             return nil
