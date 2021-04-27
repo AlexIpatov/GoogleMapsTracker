@@ -209,19 +209,17 @@ extension MapViewController: UINavigationControllerDelegate, UIImagePickerContro
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true) { [weak self] in
             guard let image = self?.extractImage(from: info) else { return }
-            self?.avatarImage = image
+            let mapImage = image.resizeForMapMark(newSize: CGSize(width: 50, height: 50))
+            self?.saveImageToRealm(imageData: mapImage.pngData())
+            self?.avatarImage = mapImage
         }
     }
 
     private func extractImage(from info: [UIImagePickerController.InfoKey: Any]) -> UIImage? {
         if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            let mapImage = image.resizeForMapMark(newSize: CGSize(width: 50, height: 50))
-            saveImageToRealm(imageData: mapImage.pngData())
-            return mapImage
+            return image
         } else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            let mapImage = image.resizeForMapMark(newSize: CGSize(width: 50, height: 50))
-            saveImageToRealm(imageData: mapImage.pngData())
-            return mapImage
+            return image
         } else {
             return nil
         }
