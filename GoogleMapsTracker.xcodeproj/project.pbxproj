@@ -20,6 +20,8 @@
 		4A766CA8261C4F8F00AB199E /* LocationRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A766CA7261C4F8F00AB199E /* LocationRealm.swift */; };
 		4A7C58982626DD3A005776BE /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7C58972626DD3A005776BE /* LocationManager.swift */; };
 		4A9040F0263449D500533B6A /* NotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9040EF263449D500533B6A /* NotificationCenter.swift */; };
+		4AA0A0F52635867700F654FE /* AvaImageRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA0A0F42635867700F654FE /* AvaImageRealm.swift */; };
+		4AA0A0F92635ABE600F654FE /* UIImage + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA0A0F82635ABE600F654FE /* UIImage + Extension.swift */; };
 		4AF645E226175E2200528BC4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF645E126175E2200528BC4 /* AppDelegate.swift */; };
 		4AF645E426175E2200528BC4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF645E326175E2200528BC4 /* SceneDelegate.swift */; };
 		4AF645E626175E2200528BC4 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF645E526175E2200528BC4 /* MapViewController.swift */; };
@@ -47,6 +49,8 @@
 		4A766CA7261C4F8F00AB199E /* LocationRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRealm.swift; sourceTree = "<group>"; };
 		4A7C58972626DD3A005776BE /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		4A9040EF263449D500533B6A /* NotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenter.swift; sourceTree = "<group>"; };
+		4AA0A0F42635867700F654FE /* AvaImageRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvaImageRealm.swift; sourceTree = "<group>"; };
+		4AA0A0F82635ABE600F654FE /* UIImage + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extension.swift"; sourceTree = "<group>"; };
 		4AF645DE26175E2200528BC4 /* GoogleMapsTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoogleMapsTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AF645E126175E2200528BC4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4AF645E326175E2200528BC4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				4A36EDB22618869B00B9E4AB /* UIButton + Extension.swift */,
+				4AA0A0F82635ABE600F654FE /* UIImage + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -146,6 +151,7 @@
 			children = (
 				4A766CA7261C4F8F00AB199E /* LocationRealm.swift */,
 				4A538ACE2621D71E00980F8B /* User.swift */,
+				4AA0A0F42635867700F654FE /* AvaImageRealm.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -356,8 +362,10 @@
 				4A538AEB2622F1F500980F8B /* BaseRouter.swift in Sources */,
 				4A538AD82621EC2900980F8B /* Validators.swift in Sources */,
 				4A9040F0263449D500533B6A /* NotificationCenter.swift in Sources */,
+				4AA0A0F52635867700F654FE /* AvaImageRealm.swift in Sources */,
 				4AF645E226175E2200528BC4 /* AppDelegate.swift in Sources */,
 				4AF645E426175E2200528BC4 /* SceneDelegate.swift in Sources */,
+				4AA0A0F92635ABE600F654FE /* UIImage + Extension.swift in Sources */,
 				4A538AF62622FD1800980F8B /* LoginRouter.swift in Sources */,
 				4A36EDB32618869B00B9E4AB /* UIButton + Extension.swift in Sources */,
 			);

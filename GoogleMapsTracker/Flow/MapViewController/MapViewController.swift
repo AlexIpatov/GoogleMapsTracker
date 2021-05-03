@@ -15,6 +15,12 @@ class MapViewController: UIViewController {
     @IBOutlet var mainRouter: MainRouter!
     private var isTracking: Bool = false
     private let realm = try! Realm()
+    private var avatarImage: UIImage? {
+        didSet {
+            placeMarkWithAvatar.icon = avatarImage
+        }
+    }
+    private(set) lazy var placeMarkWithAvatar = GMSMarker()
     private var locationManager = LocationManager.instance
     private var route: GMSPolyline?
     private var routePath: GMSMutablePath?
@@ -27,6 +33,8 @@ class MapViewController: UIViewController {
                                                   cornerRadius: 20)
     private lazy var logOut = UIButton(image: UIImage(systemName: "figure.wave"),
                                        cornerRadius: 20)
+    private lazy var cameraButton = UIButton(image: UIImage(systemName: "camera"),
+                                             cornerRadius: 35)
     @IBOutlet weak var mapView: GMSMapView!
 
     // MARK: - Lifecycle
@@ -36,8 +44,8 @@ class MapViewController: UIViewController {
         setupButtons()
         addButtonTargets()
         configureLocationManager()
+        setupAvatar()
     }
-
     // MARK: - configure location & map
     private func configureLocationManager() {
         locationManager
@@ -46,6 +54,9 @@ class MapViewController: UIViewController {
             .bind { [weak self] location in
                 guard let location = location else { return }
                 self?.routePath?.add(location.coordinate)
+                // MARK: setup placeMarkWithAvatar position
+                self?.placeMarkWithAvatar.position = location.coordinate
+                // MARK: setup routePath
                 self?.route?.path = self?.routePath
                 let position = GMSCameraPosition.camera(withTarget: location.coordinate, zoom: 17)
                 self?.mapView.animate(to: position)
@@ -64,20 +75,31 @@ class MapViewController: UIViewController {
         stopButton.addTarget(self, action: #selector(stopTrack), for: .touchUpInside)
         showPreviousRoute.addTarget(self, action: #selector(showPreviousRouteTapped), for: .touchUpInside)
         logOut.addTarget(self, action: #selector(logOutTapped), for: .touchUpInside)
+        cameraButton.addTarget(self, action:  #selector(cameraButtonTapped), for: .touchUpInside)
     }
-    private func addMarkerToPosition(position: CLLocationCoordinate2D) {
-        let marker = GMSMarker(position: position)
-        marker.icon = GMSMarker.markerImage(with: .green)
-        marker.map = mapView
-    }
+    // MARK: - Realm methods
     private func savePathToRealm() {
         try! realm.write {
-            realm.deleteAll()
+            realm.delete(realm.objects(EncodedPathRealm.self))
             let encodedPath = EncodedPathRealm()
             encodedPath.encodedPath = routePath?.encodedPath() ?? ""
             realm.add(encodedPath)
         }
     }
+    private func saveImageToRealm(imageData: Data?) {
+        guard let imageData = imageData else { return }
+        try! realm.write {
+            realm.delete(realm.objects(AvaImageRealm.self))
+            let newAvatar = AvaImageRealm()
+            newAvatar.avatar = imageData
+            realm.add(newAvatar)
+        }
+    }
+    private func setupAvatar()  {
+        guard let avaData = realm.objects(AvaImageRealm.self).last?.avatar else { return }
+        avatarImage = UIImage(data: avaData)
+    }
+    // MARK: - Alert
     func showNowTrackingAlert() {
         let alertController = UIAlertController(title: "Tracking in progress!",
                                                 message: "Do you want to save the current track?",
@@ -104,6 +126,7 @@ extension MapViewController {
         route?.map = nil
         route?.strokeColor = .blue
         route = GMSPolyline()
+        placeMarkWithAvatar.map = mapView
         routePath = GMSMutablePath()
         route?.map = mapView
         mapView.animate(toZoom: 17)
@@ -112,11 +135,12 @@ extension MapViewController {
     @objc private func stopTrack() {
         isTracking = false
         route?.map = nil
+        placeMarkWithAvatar.map = nil
         locationManager.stopUpdatingLocation()
         savePathToRealm()
     }
     @objc private func showPreviousRouteTapped() {
-        guard  !isTracking  else {showNowTrackingAlert()
+        guard !isTracking else { showNowTrackingAlert()
             return }
         let encodedPath = realm.objects(EncodedPathRealm.self)
         guard encodedPath.count != 0 else { return }
@@ -130,10 +154,20 @@ extension MapViewController {
         UserDefaults.standard.set(false, forKey: "isLogin")
         mainRouter.toLaunch()
     }
+    @objc private func cameraButtonTapped() {
+        guard UIImagePickerController.isSourceTypeAvailable(.camera) else { return }
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.sourceType = .camera
+        imagePickerController.allowsEditing = true
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true)
+    }
 }
+
 // MARK: - Setup UI
 extension MapViewController {
     private func setupButtons() {
+        mapView.addSubview(cameraButton)
         mapView.addSubview(logOut)
         mapView.addSubview(showPreviousRoute)
         mapView.addSubview(stopButton)
@@ -157,7 +191,37 @@ extension MapViewController {
             startButton.widthAnchor.constraint(equalToConstant: 70),
             startButton.heightAnchor.constraint(equalTo: stopButton.widthAnchor),
             startButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -20),
-            startButton.rightAnchor.constraint(equalTo: mapView.rightAnchor, constant: -20)
+            startButton.rightAnchor.constraint(equalTo: mapView.rightAnchor, constant: -20),
+
+            cameraButton.widthAnchor.constraint(equalToConstant: 70),
+            cameraButton.heightAnchor.constraint(equalTo: cameraButton.widthAnchor),
+            cameraButton.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 100),
+            cameraButton.leftAnchor.constraint(equalTo: mapView.leftAnchor, constant: 20)
         ])
+    }
+}
+// MARK: - UINavigationControllerDelegate, UIImagePickerControllerDelegate
+extension MapViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true)
+    }
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true) { [weak self] in
+            guard let image = self?.extractImage(from: info) else { return }
+            let mapImage = image.resizeForMapMark(newSize: CGSize(width: 50, height: 50))
+            self?.saveImageToRealm(imageData: mapImage.pngData())
+            self?.avatarImage = mapImage
+        }
+    }
+
+    private func extractImage(from info: [UIImagePickerController.InfoKey: Any]) -> UIImage? {
+        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            return image
+        } else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            return image
+        } else {
+            return nil
+        }
     }
 }
